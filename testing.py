@@ -2,66 +2,31 @@ from PIL import ImageGrab
 import numpy as np
 import cv2
 from find import find_ability
+import pyautogui
+import time
 
 
-pos = find_ability.find_Q()
-print("Q: ", pos)
-
-img = ImageGrab.grab(bbox=pos)
-img_np = np.array(img)
-img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-
-cv2.imshow("test", img_np_c)
-cv2.waitKey(0)
-
-
-pos = find_ability.find_W()
-print("W: ", pos)
-
-img = ImageGrab.grab(bbox=pos)
-img_np = np.array(img)
-img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-
-cv2.imshow("test", img_np_c)
-cv2.waitKey(0)
-
-
-pos = find_ability.find_E()
-print("E: ", pos)
-
-img = ImageGrab.grab(bbox=pos)
-img_np = np.array(img)
-img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-
-cv2.imshow("test", img_np_c)
-cv2.waitKey(0)
-
-
-pos = find_ability.find_R()
-print("R: ", pos)
-
-img = ImageGrab.grab(bbox=pos)
-img_np = np.array(img)
-img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-
-cv2.imshow("test", img_np_c)
-cv2.waitKey(0)
-
-
-pos = find_ability.find_play()
-print("play: ", pos)
-
-img = ImageGrab.grab(bbox=pos)
-img_np = np.array(img)
-img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
-
-cv2.imshow("test", img_np_c)
-cv2.waitKey(0)
+# def click(pos):
+#     pyautogui.moveTo(pos[0], pos[1], 0) 
 
 
 
+# click(find_ability.find_Q())
+# time.sleep(0.5)
 
+# click(find_ability.find_W())
+# time.sleep(0.5)
 
+# click(find_ability.find_E())
+# time.sleep(0.5)
 
+# click(find_ability.find_R())
+# time.sleep(0.5)
 
-cv2.destroyAllWindows()
+# click(find_ability.find_play())
+# time.sleep(0.5)
+
+# click(find_ability.find_input())
+# time.sleep(0.5)
+
+# cv2.destroyAllWindows()

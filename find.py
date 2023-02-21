@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 from PIL import ImageGrab
 
+
 class find_ability:
     def find():
         template = cv.imread('project/find_images/template.png', 0)
@@ -46,7 +47,9 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
 
     
     def find_Q():
@@ -69,7 +72,9 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
     
     def find_W():
         template = cv.imread('project/find_images/W.png', 0)
@@ -91,7 +96,9 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
     
     def find_E():
         template = cv.imread('project/find_images/E.png', 0)
@@ -113,7 +120,9 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
     
     def find_R():
         template = cv.imread('project/find_images/R.png', 0)
@@ -135,7 +144,9 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
 
     
     def find_play():
@@ -158,4 +169,6 @@ class find_ability:
 
         bottom_right = (top_left[0] + w, top_left[1] + h)
 
-        return top_left + bottom_right
+        final = top_left + bottom_right
+
+        return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
