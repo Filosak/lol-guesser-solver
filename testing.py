@@ -1,10 +1,67 @@
 from PIL import ImageGrab
 import numpy as np
 import cv2
+from find import find_ability
 
-img = ImageGrab.grab(bbox=(893.5,217.5,1005,328)) #bbox specifies specific region (bbox= x,y,width,height *starts top-left)
-img_np = np.array(img) #this is the array obtained from conversion
 
-cv2.imshow("test", img_np)
+pos = find_ability.find_Q()
+print("Q: ", pos)
+
+img = ImageGrab.grab(bbox=pos)
+img_np = np.array(img)
+img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
+
+cv2.imshow("test", img_np_c)
 cv2.waitKey(0)
+
+
+pos = find_ability.find_W()
+print("W: ", pos)
+
+img = ImageGrab.grab(bbox=pos)
+img_np = np.array(img)
+img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
+
+cv2.imshow("test", img_np_c)
+cv2.waitKey(0)
+
+
+pos = find_ability.find_E()
+print("E: ", pos)
+
+img = ImageGrab.grab(bbox=pos)
+img_np = np.array(img)
+img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
+
+cv2.imshow("test", img_np_c)
+cv2.waitKey(0)
+
+
+pos = find_ability.find_R()
+print("R: ", pos)
+
+img = ImageGrab.grab(bbox=pos)
+img_np = np.array(img)
+img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
+
+cv2.imshow("test", img_np_c)
+cv2.waitKey(0)
+
+
+pos = find_ability.find_play()
+print("play: ", pos)
+
+img = ImageGrab.grab(bbox=pos)
+img_np = np.array(img)
+img_np_c = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
+
+cv2.imshow("test", img_np_c)
+cv2.waitKey(0)
+
+
+
+
+
+
+
 cv2.destroyAllWindows()

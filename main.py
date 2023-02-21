@@ -3,6 +3,7 @@ import numpy as np
 from PIL import ImageGrab
 import json
 import time
+from find import find_ability
 
 
 # variables
@@ -39,10 +40,10 @@ for key in sorted(json_data["keys"].values()):
         data.append([hist_curr_img, key, spells_keys[i]])
 
 
-
+binding_box = find_ability.find()
 
 while True:
-    source_img = ImageGrab.grab(bbox=(893.5,217.5,1005,328))
+    source_img = ImageGrab.grab(bbox=binding_box)
 
     source_img_np = np.array(source_img)
 
@@ -53,7 +54,6 @@ while True:
     hist_source = cv.calcHist([colored_source], channels, None, histSize, ranges, accumulate=False)
 
     cv.normalize(hist_source, hist_source, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
-
 
     final = [0, None, None]
     for hist, champ, key in data:
