@@ -56,6 +56,7 @@ binding_box = find_ability.find()
 
 
 click(play_pos)
+
 while True:
     click(input_pos)
 
@@ -87,7 +88,7 @@ while True:
     elif final[2] == "R":
         click(R_pos)
 
-    time.sleep(0.15)
+    # time.sleep(0.5)
 
     if keyboard.is_pressed('esc'):
-        exit()
+        break
