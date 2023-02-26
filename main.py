@@ -5,7 +5,7 @@ import time
 import pyautogui
 import keyboard
 from PIL import ImageGrab
-from find import find_ability
+from find import find_ability, pictures
 
 def click(pos):
     pyautogui.click(x=pos[0], y=pos[1])
@@ -15,6 +15,7 @@ json_data = json.load(open("projekt/data.json"))
 spells_keys = ["Q", "W", "E", "R", "P"]
 data = []     # histogram, champ, key
 find_ab = find_ability()
+to_hist = pictures()
 
 # variable - I don't know what they do :( IMPORTANT ig
 h_bins = 50
@@ -30,31 +31,13 @@ channels = [0, 1]
 for key in sorted(json_data["keys"].values()):
     name = json_data["data"][key]["name"]
 
+    # spells for champions
     for i, spell in enumerate(json_data["data"][key]["spells"]):
-        
-        # getting picture of ability
-        curr_img = cv.imread(f"projekt/images/{spell['image']['full']}")
-
-        colored_curr_img = cv.cvtColor(curr_img, cv.COLOR_BGR2HSV)
-
-        # converting picture to histogram
-        hist_curr_img = cv.calcHist([colored_curr_img], channels, None, histSize, ranges, accumulate=False)
-        cv.normalize(hist_curr_img, hist_curr_img, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
-
-        # appending it to the list of all histograms
+        hist_curr_img = to_hist.image_to_hist(f"projekt/images/{spell['image']['full']}")
         data.append([hist_curr_img, name, spells_keys[i]])
 
-    # passive
-    img_path = json_data["data"][key]["passive"]["image"]["full"]
-    curr_img = cv.imread(f"projekt/passives_images/{img_path}")
-
-    colored_curr_img = cv.cvtColor(curr_img, cv.COLOR_BGR2HSV)
-
-    # converting picture to histogram
-    hist_curr_img = cv.calcHist([colored_curr_img], channels, None, histSize, ranges, accumulate=False)
-    cv.normalize(hist_curr_img, hist_curr_img, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
-
-    # appending it to the list of all histograms
+    # passives
+    hist_curr_img = to_hist.image_to_hist(f"projekt/passives_images/{json_data['data'][key]['passive']['image']['full']}")
     data.append([hist_curr_img, name, spells_keys[-1]])
 
 

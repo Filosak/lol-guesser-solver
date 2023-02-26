@@ -103,3 +103,25 @@ class find_ability:
         final = top_left + bottom_right
         
         return (final[0] + final[2]) // 2, (final[1] + final[3]) // 2 
+    
+
+class pictures:
+    def __init__(self):
+        self.h_bins = 50
+        self.s_bins = 60
+        self.histSize = [self.h_bins, self.s_bins]
+        self.h_ranges = [0, 180]
+        self.s_ranges = [0, 256]
+        self.ranges = self.h_ranges + self.s_ranges
+        self.channels = [0, 1]
+
+    def image_to_hist(self, path):
+        # getting picture of ability
+        curr_img = cv.imread(path)
+        colored_curr_img = cv.cvtColor(curr_img, cv.COLOR_BGR2HSV)
+
+        # converting picture to histogram
+        hist_curr_img = cv.calcHist([colored_curr_img], self.channels, None, self.histSize, self.ranges, accumulate=False)
+        cv.normalize(hist_curr_img, hist_curr_img, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
+
+        return hist_curr_img
