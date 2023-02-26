@@ -11,9 +11,10 @@ def click(pos):
     pyautogui.click(x=pos[0], y=pos[1])
 
 # variables
-json_data = json.load(open("project/data.json"))
-spells_keys = ["Q", "W", "E", "R"]
+json_data = json.load(open("projekt/data.json"))
+spells_keys = ["Q", "W", "E", "R", "P"]
 data = []     # histogram, champ, key
+find_ab = find_ability()
 
 # variable - I don't know what they do :( IMPORTANT ig
 h_bins = 50
@@ -27,11 +28,12 @@ channels = [0, 1]
 
 # creating list of histograms of abilities and coresponding key and champion
 for key in sorted(json_data["keys"].values()):
+    name = json_data["data"][key]["name"]
+
     for i, spell in enumerate(json_data["data"][key]["spells"]):
         
         # getting picture of ability
-        curr_img = cv.imread(f"project/images/{spell['image']['full']}")
-
+        curr_img = cv.imread(f"projekt/images/{spell['image']['full']}")
 
         colored_curr_img = cv.cvtColor(curr_img, cv.COLOR_BGR2HSV)
 
@@ -40,19 +42,33 @@ for key in sorted(json_data["keys"].values()):
         cv.normalize(hist_curr_img, hist_curr_img, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
 
         # appending it to the list of all histograms
-        data.append([hist_curr_img, key, spells_keys[i]])
+        data.append([hist_curr_img, name, spells_keys[i]])
+
+    # passive
+    img_path = json_data["data"][key]["passive"]["image"]["full"]
+    curr_img = cv.imread(f"projekt/passives_images/{img_path}")
+
+    colored_curr_img = cv.cvtColor(curr_img, cv.COLOR_BGR2HSV)
+
+    # converting picture to histogram
+    hist_curr_img = cv.calcHist([colored_curr_img], channels, None, histSize, ranges, accumulate=False)
+    cv.normalize(hist_curr_img, hist_curr_img, alpha=0, beta=1, norm_type=cv.NORM_MINMAX)
+
+    # appending it to the list of all histograms
+    data.append([hist_curr_img, name, spells_keys[-1]])
 
 
 # pos variables
-Q_pos = find_ability.find_Q()
-W_pos = find_ability.find_W()
-E_pos = find_ability.find_E()
-R_pos = find_ability.find_R()
+Q_pos = find_ab.find_Q()
+W_pos = find_ab.find_W()
+E_pos = find_ab.find_E()
+R_pos = find_ab.find_R()
+P_pos = find_ab.find_P()
 
-play_pos = find_ability.find_play()
-input_pos = find_ability.find_input()
+play_pos = find_ab.find_play()
+input_pos = find_ab.find_input()
 
-binding_box = find_ability.find()
+binding_box = find_ab.find()
 
 
 click(play_pos)
@@ -87,6 +103,8 @@ while True:
         click(E_pos)
     elif final[2] == "R":
         click(R_pos)
+    elif final[2] == "P":
+        click(P_pos)
 
     # time.sleep(0.5)
 
