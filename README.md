@@ -13,16 +13,3 @@ Modules needed
 - time
 
 Spell images are taken from: https://github.com/InFinity54/LoL_DDragon/tree/master/latest/img/spell
-
-
-Champions that don't work at the time ( lol guesser uses old images)
---------------------------------------------------------------------
-- Aurelion Sol
-- Jax
-- Sindra
-- Udyr
-- Master Yi
-- Samira
-- Ahri
-- Caitlin
-- Akshan
